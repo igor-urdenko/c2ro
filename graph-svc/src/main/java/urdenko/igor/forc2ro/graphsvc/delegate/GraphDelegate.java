@@ -48,12 +48,13 @@ public class GraphDelegate {
         return response;
     }
 
-    /**  **/
+    /**
+     * Stores given graph in the database.
+     * @param theGraph The graph object to store.
+     * @return Returns response with stored graph ID.
+     **/
     public BaseResponse storeGraph(Graph theGraph) {
-        String id = graphService.storeGraph(theGraph);
-        CreatedGraphResponse response = new CreatedGraphResponse(id);
-
-        return response;
+        return new CreatedGraphResponse(graphService.storeGraph(theGraph));
     }
 
     /**  **/
