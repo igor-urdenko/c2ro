@@ -21,6 +21,9 @@ public class Edge implements Serializable {
     private Node from;
     private Node to;
 
+    /** Constructs an empty Edge. **/
+    public Edge() {}
+
     /**
      * Constructs an edge between {@code from} and {@code to} nodes.
      * If the edge is NOT directed ({@code isDirected == false}), then this edge implements

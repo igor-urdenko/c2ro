@@ -21,7 +21,7 @@ public interface GraphService {
      * @return stored graph {@code id} or {@code null} in case of any error.
      * TODO: Define possible checked exceptions to throw.
      **/
-    Long storeGraph(Graph theGraph);
+    String storeGraph(Graph theGraph);
 
     /**
      * Finds graph with given {@code id} in the database.
@@ -29,5 +29,5 @@ public interface GraphService {
      * @return The graph object if it was found or {@code null}.
      * TODO: Define possible checked exceptions to throw.
      **/
-    Graph getGraphById(Long id);
+    Graph getGraphById(String id);
 }

@@ -1,14 +1,19 @@
 package urdenko.igor.forc2ro.graphsvc.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import urdenko.igor.forc2ro.graphsvc.db.GraphRepository;
 import urdenko.igor.forc2ro.graphsvc.model.graph.Graph;
 import urdenko.igor.forc2ro.graphsvc.model.graph.Node;
 import urdenko.igor.forc2ro.graphsvc.model.graph.exception.GraphException;
 
 import java.util.Random;
+import java.util.UUID;
 
 @Service
 public class GraphServiceImpl implements GraphService {
+    private GraphRepository graphRepository;
+
     /** @see GraphService#generateGraph()  **/
     @Override
     public Graph generateGraph() {
@@ -53,13 +58,25 @@ public class GraphServiceImpl implements GraphService {
 
     /** @see GraphService#storeGraph(Graph)   **/
     @Override
-    public Long storeGraph(Graph theGraph) {
+    public String storeGraph(Graph theGraph) {
+        String generatedId = UUID.randomUUID().toString();
+
+        theGraph.setGraphId(generatedId);
+
+        Graph insertedGraph = graphRepository.insert(theGraph);
+        return insertedGraph.getGraphId();
+    }
+
+    /** @see GraphService#getGraphById(String) **/
+    @Override
+    public Graph getGraphById(String id) {
         return null;
     }
 
-    /** @see GraphService#getGraphById(Long)   **/
-    @Override
-    public Graph getGraphById(Long id) {
-        return null;
+    /* Autowired components. */
+
+    @Autowired
+    public void setGraphRepository(GraphRepository graphRepository) {
+        this.graphRepository = graphRepository;
     }
 }

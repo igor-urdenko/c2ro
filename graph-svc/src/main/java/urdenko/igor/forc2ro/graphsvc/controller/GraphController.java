@@ -54,7 +54,7 @@ public class GraphController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             method = RequestMethod.GET
     )
-    public ResponseEntity<BaseResponse> getGraphById(@PathVariable("id") Long id) {
+    public ResponseEntity<BaseResponse> getGraphById(@PathVariable("id") String id) {
         BaseResponse result = graphDelegate.getGraphById(id);
         return new ResponseEntity<>(result, result.getStatus());
     }

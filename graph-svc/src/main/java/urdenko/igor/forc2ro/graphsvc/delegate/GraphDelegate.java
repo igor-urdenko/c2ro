@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import urdenko.igor.forc2ro.graphsvc.model.graph.Graph;
 import urdenko.igor.forc2ro.graphsvc.model.response.BaseResponse;
+import urdenko.igor.forc2ro.graphsvc.model.response.CreatedGraphResponse;
 import urdenko.igor.forc2ro.graphsvc.model.response.GraphResponse;
 import urdenko.igor.forc2ro.graphsvc.service.GraphService;
 
@@ -49,11 +50,14 @@ public class GraphDelegate {
 
     /**  **/
     public BaseResponse storeGraph(Graph theGraph) {
-        return null;
+        String id = graphService.storeGraph(theGraph);
+        CreatedGraphResponse response = new CreatedGraphResponse(id);
+
+        return response;
     }
 
     /**  **/
-    public BaseResponse getGraphById(Long id) {
+    public BaseResponse getGraphById(String id) {
         return null;
     }
 

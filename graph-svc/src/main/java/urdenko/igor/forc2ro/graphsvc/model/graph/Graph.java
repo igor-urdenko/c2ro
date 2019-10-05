@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import urdenko.igor.forc2ro.graphsvc.model.graph.exception.GraphException;
 
 import java.io.Serializable;
@@ -18,8 +19,9 @@ import java.util.Set;
 public class Graph implements Serializable {
     private static final long serialVersionUID = 20191005L;
 
+    @Id
     @JsonProperty("id")
-    private Long graphId;
+    private String graphId;
 
     @JsonProperty("nodes")
     private Set<Node> nodes;
@@ -29,7 +31,7 @@ public class Graph implements Serializable {
 
     /** Constructs an empty graph object. **/
     public Graph() {
-        this.graphId = -1L;
+        this.graphId = "{NO_ID}";
         this.nodes = new HashSet<>();
         this.edges = new HashSet<>();
     }
