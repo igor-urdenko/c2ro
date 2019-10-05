@@ -3,7 +3,11 @@ package urdenko.igor.forc2ro.graphsvc.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import urdenko.igor.forc2ro.graphsvc.delegate.GraphDelegate;
 import urdenko.igor.forc2ro.graphsvc.model.graph.Graph;
 import urdenko.igor.forc2ro.graphsvc.model.response.BaseResponse;
@@ -13,7 +17,7 @@ public class GraphController {
     private GraphDelegate graphDelegate;
 
     @RequestMapping(
-            value = "graphs/random",
+            value = "/graphs/random",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             method = RequestMethod.GET
     )
@@ -23,7 +27,19 @@ public class GraphController {
     }
 
     @RequestMapping(
-            value = "graphs",
+            value = "/graphs/random/{nodes}/{edges}",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            method = RequestMethod.GET
+    )
+    public ResponseEntity<BaseResponse> generateGraph(
+            @PathVariable("nodes")int howManyNodes,
+            @PathVariable("edges")int howManyEdges) {
+        BaseResponse result = graphDelegate.generateGraph(howManyNodes, howManyEdges);
+        return new ResponseEntity<>(result, result.getStatus());
+    }
+
+    @RequestMapping(
+            value = "/graphs",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             method = RequestMethod.POST
@@ -34,7 +50,7 @@ public class GraphController {
     }
 
     @RequestMapping(
-            value = "graphs/{id}",
+            value = "/graphs/{id}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             method = RequestMethod.GET
     )

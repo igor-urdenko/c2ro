@@ -8,6 +8,13 @@ public interface GraphService {
     Graph generateGraph();
 
     /**
+     * Generates graph with given number of nodes and edges.
+     * @param howManyNodes The number of nodes to generate.
+     * @param howManyEdges The number of Edges to generate.
+     **/
+    Graph generateGraph(int howManyNodes, int howManyEdges);
+
+    /**
      * Stores the given graph into database.
      * If the graph was successfully stored in the DB the method returns graph ID; otherwise returns {@code null}.
      * @param theGraph The graph object to store in the DB.
