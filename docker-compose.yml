@@ -1,0 +1,21 @@
+version: '3'
+services:
+  graph-svc:
+    build: ./graph-svc
+    ports:
+      - 17000:8080
+    volumes:
+      - /app/graph-service
+    links:
+      - graph-mongo
+    environment:
+      MONGO_SERVER: graph-mongo
+      MONGO_PORT: 17001
+  graph-mongo:
+    image: mongo:4.2.0-bionic
+    restart: always
+    ports:
+      - 17001:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: graph-root
+      MONGO_INITDB_ROOT_PASSWORD: Gr4phP4ssw0rd
