@@ -9,8 +9,8 @@ services:
     links:
       - graph-mongo
     environment:
-      MONGO_SERVER: graph-mongo
-      MONGO_PORT: 17001
+      - MONGO_SERVER=graph-mongo
+      - MONGO_PORT=17001
   graph-mongo:
     image: mongo:4.2.0-bionic
     restart: always
