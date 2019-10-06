@@ -25,3 +25,11 @@ Example of description:
 
 
 For deployment, you can use docker compose for dockerized service and MongoDB instance. You can also implement other deployment approaches of your choice.
+
+
+
+# Starting docker containers
+1. Start Mongo DB container
+  docker run --name graph-mongo -d -p 17001:27017 mongo:4.2.0-bionic
+2. Graph Service App
+  docker run -e spring.data.mongodb.host=192.168.99.100 -e spring.data.mongodb.port=17001 -d -p 17000:8080 --name my-graph-svc graph-svc
