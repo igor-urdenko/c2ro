@@ -70,7 +70,7 @@ public class GraphServiceImpl implements GraphService {
     /** @see GraphService#getGraphById(String) **/
     @Override
     public Graph getGraphById(String id) {
-        return null;
+        return graphRepository.findById(id).orElse(null);
     }
 
     /* Autowired components. */

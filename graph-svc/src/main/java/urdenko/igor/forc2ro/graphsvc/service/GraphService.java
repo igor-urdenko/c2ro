@@ -19,7 +19,6 @@ public interface GraphService {
      * If the graph was successfully stored in the DB the method returns graph ID; otherwise returns {@code null}.
      * @param theGraph The graph object to store in the DB.
      * @return stored graph {@code id} or {@code null} in case of any error.
-     * TODO: Define possible checked exceptions to throw.
      **/
     String storeGraph(Graph theGraph);
 
@@ -27,7 +26,6 @@ public interface GraphService {
      * Finds graph with given {@code id} in the database.
      * @param id The ID of the graph to find in the DB.
      * @return The graph object if it was found or {@code null}.
-     * TODO: Define possible checked exceptions to throw.
      **/
     Graph getGraphById(String id);
 }

@@ -59,7 +59,14 @@ public class GraphDelegate {
 
     /**  **/
     public BaseResponse getGraphById(String id) {
-        return null;
+        GraphResponse response = new GraphResponse();
+        Graph g = graphService.getGraphById(id);
+
+        response.setGraph(g);
+        response.setStatus(HttpStatus.OK);
+        response.setMessage("Successfully retrieved graph by ID.");
+
+        return response;
     }
 
     /* Autowired components. */
