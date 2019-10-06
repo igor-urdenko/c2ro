@@ -16,6 +16,10 @@ import urdenko.igor.forc2ro.graphsvc.model.response.BaseResponse;
 public class GraphController {
     private GraphDelegate graphDelegate;
 
+    /**
+     * REST end point for generating a graph with random number of nodes and edges.
+     * @return response containing generated graph with HTTP status code and message.
+     */
     @RequestMapping(
             value = "/graphs/random",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -26,6 +30,12 @@ public class GraphController {
         return new ResponseEntity<>(result, result.getStatus());
     }
 
+    /**
+     * REST end point for generating a graph with given number of nodes and edges.
+     * @param howManyNodes The number of nodes to generate.
+     * @param howManyEdges The number of edges to generate.
+     * @return response containing generated graph with HTTP status code and message.
+     */
     @RequestMapping(
             value = "/graphs/random/{nodes}/{edges}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -38,6 +48,11 @@ public class GraphController {
         return new ResponseEntity<>(result, result.getStatus());
     }
 
+    /**
+     * REST end point for storing given graph in DB.
+     * @param theGraph The graph to store.
+     * @return response with stored graph ID with HTTP status code and message.
+     */
     @RequestMapping(
             value = "/graphs",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -49,6 +64,11 @@ public class GraphController {
         return new ResponseEntity<>(result, result.getStatus());
     }
 
+    /**
+     * REST end point for retrieving graph with given ID from DB.
+     * @param id The ID of the graph to retrieve from the DB.
+     * @return response with Retrieved graph with HTTP status code and message.
+     */
     @RequestMapping(
             value = "/graphs/{id}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
