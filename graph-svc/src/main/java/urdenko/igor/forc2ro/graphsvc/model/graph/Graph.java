@@ -31,7 +31,6 @@ public class Graph implements Serializable {
 
     /** Constructs an empty graph object. **/
     public Graph() {
-        this.graphId = "{NO_ID}";
         this.nodes = new HashSet<>();
         this.edges = new HashSet<>();
     }
