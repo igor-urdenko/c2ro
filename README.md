@@ -1,3 +1,23 @@
+# Graph Service
+The suggested GitHub project is an implementation of the REST service
+that allows Graph creation storing in and retrieving from Mongo DB instance.
+
+## REST service endpoints
+The Graph service provide following endpoints:
+1. Store Graph: `/graphs/` -- accepts `POST` requests that expects a request body 
+with Graph structure in JSON format. The end point returns the generated ID 
+of the Graph stored in DB.
+2. Get Graph: `/graphs/:id` -- accepts `GET` requests and returns Graph with given ID from
+database in JSON format.
+3. Generate Random Graph: `/graphs/random` -- accepts `GET` requests and returns a generated graph
+with random number of nodes and edges in JSON format. 
+4. Generate Graph: `/graphs/random/:nodes/:edges` -- accepts `GET` requests and returns 
+a generated graph with given number of nodes and edges in JSON format.
+
+## Instructions
+### Store Graph end point
+
+
 # C2RO
 Interview Question implementation for C2RO
 
