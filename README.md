@@ -16,7 +16,60 @@ a generated graph with given number of nodes and edges in JSON format.
 
 ## Instructions
 ### Store Graph end point
+The end point path: `http://{server}:{port}/graphs`
 
+The `POST` request is expected to contain the graph object in JSON format.
+
+Example:
+```json
+{
+    "id": "null",
+    "nodes": [
+        { "id": 1, "label": "Node-1" },
+        { "id": 2, "label": "Node-2" },
+        { "id": 3, "label": "Node-3" },
+        { "id": 4, "label": "Node-4" },
+        { "id": 5, "label": "Node-5" }
+    ],
+    "edges": [
+        {
+            "weight": 1.3608482,
+            "from": { "id": 1, "label": "Node-1" },
+            "to": { "id": 2, "label": "Node-2" },
+            "directed": false,
+            "loop": false
+        },
+        {
+            "weight": 1.3608482,
+            "from": { "id": 2, "label": "Node-2" },
+            "to": { "id": 3, "label": "Node-3" },
+            "directed": false,
+            "loop": false
+        },
+        {
+            "weight": 1.3608482,
+            "from": { "id": 3, "label": "Node-3" },
+            "to": { "id": 4, "label": "Node-4" },
+            "directed": false,
+            "loop": false
+        },
+        {
+            "weight": 1.3608482,
+            "from": { "id": 4, "label": "Node-4" },
+            "to": { "id": 5, "label": "Node-5" },
+            "directed": false,
+            "loop": false
+        },
+        {
+            "weight": 1.3608482,
+            "from": { "id": 5, "label": "Node-5" },
+            "to": { "id": 1, "label": "Node-1" },
+            "directed": false,
+            "loop": false
+        }
+    ]
+}
+```
 
 # C2RO
 Interview Question implementation for C2RO
