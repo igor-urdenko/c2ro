@@ -70,6 +70,8 @@ Example:
     ]
 }
 ```
+The structure above defines the following graph:
+![alt text](https://github.com/igor-urdenko/c2ro/blob/master/graph-svc/images/5-nodes.png "5 nodes graph")
 
 # C2RO
 Interview Question implementation for C2RO
