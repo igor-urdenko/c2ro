@@ -3,7 +3,7 @@ The suggested GitHub project is an implementation of the REST service
 that allows Graph creation storing in and retrieving from Mongo DB instance.
 
 ## REST service endpoints
-The Graph service provide following endpoints:
+The Graph service is implemented as Spring Boot application and provides the following end points:
 1. Store Graph: `/graphs/` -- accepts `POST` requests that expects a request body 
 with Graph structure in JSON format. The end point returns the generated ID 
 of the Graph stored in DB.
@@ -14,12 +14,8 @@ with random number of nodes and edges in JSON format.
 4. Generate Graph: `/graphs/random/:nodes/:edges` -- accepts `GET` requests and returns 
 a generated graph with given number of nodes and edges in JSON format.
 
-## Instructions
-### Store Graph end point
-The end point path: `http://{server}:{port}/graphs`
-
-The `POST` request is expected to contain the graph object in JSON format.
-
+## The JSON structure describing the Graph
+All defined end points operate a Graph object in JSON format.
 Example:
 ```json
 {
@@ -71,7 +67,37 @@ Example:
 }
 ```
 The structure above defines the following graph:
+
 ![alt text](https://github.com/igor-urdenko/c2ro/blob/master/graph-svc/images/5-nodes.png "5 nodes graph")
+
+## Deployment Instructions
+The current implementation of the service does not allow to deploy both the service and Mongo DB instance in one step. There are few steps to perform.
+1. Deploy the Mongo DB container in the docker:
+```bash
+docker run --name graph-mongo -d -p 17001:27017 mongo:4.2.0-bionic
+```
+2. Build the Spring Boot application:
+```bash
+mvn clean install -f ./graph-svc/pom.xml
+```
+3. Build a Docker image with Graph Service application:
+```bash
+docker build --tag graph-svc ./graph-svc
+```
+4. Deploy Graph Service container:
+```bash
+# The $HOST variable should be replaced with Docker host address where you have deployed the Mongo DB container
+docker run -e spring.data.mongodb.host=$HOST -e spring.data.mongodb.port=17001 -d -p 17000:8080 --name my-graph-svc graph-svc
+```
+
+After the deployment, the service is ready to work and can be accessed with any REST client.
+
+
+
+
+
+
+
 
 # C2RO
 Interview Question implementation for C2RO
