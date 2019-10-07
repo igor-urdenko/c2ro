@@ -6,9 +6,9 @@ that allows Graph creation storing in and retrieving from Mongo DB instance.
 The Graph service is implemented as Spring Boot application and provides the following end points:
 1. Store Graph: `/graphs/` -- accepts `POST` requests that expects a request body 
 with Graph structure in JSON format. The end point returns the generated ID 
-of the Graph stored in DB.
+of the Graph stored in DB. The ID looks like UUID string. For example: `689d45a1-2aa4-4b95-9243-4e092fbaf8ab`
 2. Get Graph: `/graphs/:id` -- accepts `GET` requests and returns Graph with given ID from
-database in JSON format.
+database in JSON format. The ID looks like UUID string. For example: `689d45a1-2aa4-4b95-9243-4e092fbaf8ab`
 3. Generate Random Graph: `/graphs/random` -- accepts `GET` requests and returns a generated graph
 with random number of nodes and edges in JSON format. 
 4. Generate Graph: `/graphs/random/:nodes/:edges` -- accepts `GET` requests and returns 
@@ -91,46 +91,3 @@ docker run -e spring.data.mongodb.host=$HOST -e spring.data.mongodb.port=17001 -
 ```
 
 After the deployment, the service is ready to work and can be accessed with any REST client.
-
-
-
-
-
-
-
-
-# C2RO
-Interview Question implementation for C2RO
-
-# Question
-You should implement a service with two REST endpoints
-[path: `/graphs`, method: POST] that receives a graph description.
-The following steps need to be processed before storing the graph in MongoDB:
-1. Validation to make sure the graph description has no error
-2. Load the graph in known Python library (i.e. networkx)
-3. Returns the id of the stored graph for retrieval purposes
-
-[path: `/graphs/:id`, method: GET] that retrieves the graph with specified id and return a JSON version
-
-Graph description contains:
-Set of graph nodes
-Set of graph edges.
-  Each edge contains extendable list of meta data including:
-    Weight
-    Direction
-    Loop
-    etc
-Example of description:
-    Node_Name Node_Name Weight Direction
-    [node1]   [node2]   1.6    [node1]-[node2]
-
-
-For deployment, you can use docker compose for dockerized service and MongoDB instance. You can also implement other deployment approaches of your choice.
-
-
-
-# Starting docker containers
-1. Start Mongo DB container
-  docker run --name graph-mongo -d -p 17001:27017 mongo:4.2.0-bionic
-2. Graph Service App
-  docker run -e spring.data.mongodb.host=192.168.99.100 -e spring.data.mongodb.port=17001 -d -p 17000:8080 --name my-graph-svc graph-svc
