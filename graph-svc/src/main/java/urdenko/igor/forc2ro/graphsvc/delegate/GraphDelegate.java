@@ -51,21 +51,29 @@ public class GraphDelegate {
     /**
      * Stores given graph in the database.
      * @param theGraph The graph object to store.
-     * @return Returns response with stored graph ID.
+     * @return response with stored graph ID.
      **/
     public BaseResponse storeGraph(Graph theGraph) {
         return new CreatedGraphResponse(graphService.storeGraph(theGraph));
     }
 
-    /**  **/
+    /**
+     * Retrieves graph from database by the given ID.
+     * @param id The ID of he graph to retrieve.
+     * @return response with the graph given ID from database, HTTP status and message.
+     **/
     public BaseResponse getGraphById(String id) {
         GraphResponse response = new GraphResponse();
         Graph g = graphService.getGraphById(id);
 
-        response.setGraph(g);
-        response.setStatus(HttpStatus.OK);
-        response.setMessage("Successfully retrieved graph by ID.");
-
+        if (g != null) {
+            response.setGraph(g);
+            response.setStatus(HttpStatus.OK);
+            response.setMessage("Successfully retrieved graph by ID.");
+        } else {
+            response.setStatus(HttpStatus.NOT_FOUND);
+            response.setMessage("Graph not found.");
+        }
         return response;
     }
 
