@@ -8,7 +8,7 @@
         <version>2.1.9.RELEASE</version>
         <relativePath/>
     </parent>
-    <groupId>urdenko.igor.forc2ro</groupId>
+    <groupId>urdenko.igor.graphlib</groupId>
     <artifactId>graph-svc</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <name>graph-svc</name>
